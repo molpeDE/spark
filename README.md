@@ -116,14 +116,14 @@ This project is offered under a dual license:
 This project includes third-party code components:
 
 1. cbor-js
-   Modified Source: https://github.com/molpeDE/spark/blob/main/internal/typescript/cbor.ts
-   Original Source: https://github.com/paroga/cbor-js
-   License: MIT
+   Modified Source: https://github.com/molpeDE/spark/blob/main/internal/typescript/cbor.ts  
+   Original Source: https://github.com/paroga/cbor-js  
+   License: MIT 
 
 2. typescriptify-golang-structs
-   Modified Source: https://github.com/molpeDE/spark/blob/main/internal/tsgen/tsgen.go
-   Original Source: https://github.com/tkrajina/typescriptify-golang-structs
-   License: Apache-2.0
+   Modified Source: https://github.com/molpeDE/spark/blob/main/internal/tsgen/tsgen.go  
+   Original Source: https://github.com/tkrajina/typescriptify-golang-structs  
+   License: Apache-2.0  
 
 All such components retain their original licenses and are NOT covered
 by the dual licensing of this project.
