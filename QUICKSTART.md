@@ -225,6 +225,7 @@ async function call() {
 
 Production build (assumes you have built your frontend into `dist` and embedded it):
 ```bash
+go generate ./...
 go build -o myapp ./cmd/myapp
 ./myapp -config config.ini
 ```
