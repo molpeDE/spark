@@ -29,36 +29,38 @@ Requirements
 - Node tooling only if you use any npm/bun packages in the frontend, but Bun simplifies this
 - git
 
-Quick start - use in a project  
-[Click Me](./QUICKSTART.md)
+### Quick start  
+- Use in a project: [Click Me](./QUICKSTART.md)
 
-Quick start — run example app (development)
-1. Clone the repository
-   git clone https://github.com/molpeDE/spark.git
-   cd spark
+- run example app (development)
+   1. Clone the repository
+      git clone https://github.com/molpeDE/spark.git
+      cd spark
 
-2. Ensure Bun is installed (dev frontend only)
-   - Install Bun from https://bun.sh (The debug/dev frontend expects Bun for the bundler and dev server.)
+   2. Ensure Bun is installed (dev frontend only)
+      - Install Bun from https://bun.sh (The debug/dev frontend expects Bun for the bundler and dev server.)
 
-3. Run the example app (uses cmd/testapp)
-   go run ./cmd/testapp
+   3. Run the example app (uses cmd/testapp)
+      go run ./cmd/testapp
 
-   Notes:
-   - If `config.ini` does not exist it will be created with any default values found in the app's config struct.
-   - The testapp serves the SPA root (frontend) and exposes RPC endpoints under `/rpc`.
+      Notes:
+      - If `config.ini` does not exist it will be created with any default values found in the app's config struct.
+      - The testapp serves the SPA root (frontend) and exposes RPC endpoints under `/rpc`.
 
-4. Open the app in your browser (defaults from example config):
-   http://localhost:3999/
+   4. Open the app in your browser (defaults from example config):
+      http://localhost:3999/
 
-Quick start — build production
-1. Build the frontend for production (project uses a Bun-based bundler):
-   `go generate cmd/testapp/frontend/frontend.go`
+— build production
+   1. Build the frontend for production (project uses a Bun-based bundler):
+      `go generate cmd/testapp/frontend/frontend.go`
 
-2. Build and run the test-app:  
-   ```
-   go build -o spark-example-app ./cmd/testapp
-   ./spark-example-app -config ./config.ini
-   ```
+   2. Build and run the test-app:  
+      ```
+      go build -o spark-example-app ./cmd/testapp
+      ./spark-example-app -config ./config.ini
+      ```
+
+#### Additional information
 
 Configuration
 - Configuration parsing lives in pkg/framework and parses an INI file into a Go struct, honoring `default` tags on struct fields.
@@ -94,21 +96,13 @@ Validation
 WebSockets
 - The project contains a small TypeScript helper for async WebSocket handling (internal/typescript/websocket.ts) used by the example frontend.
 
-Project structure (high level)
-- cmd/testapp — example application and frontend
-- pkg/framework — app integration helpers and config parsing
-- pkg/utils/validate — validator wrapper
-- internal/rpcgen — reflection-based RPC glue + (debug) TypeScript typedef generation
-- internal/spa — SPA serving and dev reverse-proxy logic
-- internal/typescript — bundler and client-side TypeScript helpers
-
-Development notes
+#### Development notes
 - Debug builds enable additional behavior:
   - Generation of TypeScript typedefs from Go types (for a nicer developer DX).
   - Bun-based dev bundler runs and the server reverse-proxies to it.
 - Production builds embed the compiled frontend into the binary (via go:embed in cmd/testapp/frontend).
 
-Acknowledgements
+### Acknowledgements
 - Echo web framework (github.com/labstack/echo)
 - go-playground/validator for validation
 - fxamacker/cbor for CBOR serialization
