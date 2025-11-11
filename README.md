@@ -50,7 +50,7 @@ Requirements
    4. Open the app in your browser (defaults from example config):
       http://localhost:3999/
 
-— build production
+- build production
    1. Build the frontend for production (project uses a Bun-based bundler):
       `go generate cmd/testapp/frontend/frontend.go`
 
