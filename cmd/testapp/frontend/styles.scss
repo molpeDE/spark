@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+:root {
+	--molpe-primary: #40297e;
+}
+
+body, #app {
+	font-family: "Nunito", sans-serif;
+	margin: 0px;
+	height: 100vh;
+}
+
+.bg-signin {
+	background: linear-gradient(70deg, #000000, var(--molpe-primary), #573957, #9b0c9b);
+	background-size: 400% 400%;
+	animation: gradient 30s linear infinite;
+}
+
+#root {
+	height: 100%;
+}
+
+.form-signin {
+	width: 100%;
+	max-width: 20vw;
+	padding: 3em;
+	margin: auto;
+}
+
+.form-signin .checkbox {
+	font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+	z-index: 2;
+}
+
+.form-control:invalid {
+	border: red 1px solid;
+}
+
+// .form-signin input[type="email"] {
+// 	margin-bottom: -1px;
+// 	border-bottom-right-radius: 0;
+// 	border-bottom-left-radius: 0;
+// }
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	// border-top-left-radius: 0;
+	// border-top-right-radius: 0;
+}
+
+.bg-molpe {
+	background-color: var(--molpe-primary) !important;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.white-space-pre {
+	white-space: pre;
+}
+
+.clickable {
+	cursor: pointer;
+	user-select: none;
+}
+
+#login-spinner {
+	font-size: 21px;
+}
+
+.spinning {
+	animation: spin 1s infinite ease-in-out;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
