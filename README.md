@@ -29,8 +29,8 @@ Requirements
 - Node tooling only if you use any npm/bun packages in the frontend, but Bun simplifies this
 - git
 
-Quick start - use in a project
-(QUICKSTART.md)[Click Me]
+Quick start - use in a project  
+[Click Me](./QUICKSTART.md)
 
 Quick start — run example app (development)
 1. Clone the repository
