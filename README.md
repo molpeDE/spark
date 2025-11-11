@@ -46,8 +46,8 @@ Quick start — build production
 1. Build the frontend for production (project uses a Bun-based bundler):
    `go generate cmd/testapp/frontend/frontend.go`
 
-2. Build and run the test-app:
-   ```sh
+2. Build and run the test-app:  
+   ```
    go build -o spark-example-app ./cmd/testapp
    ./spark-example-app -config ./config.ini
    ```
@@ -115,12 +115,12 @@ This project is offered under a dual license:
 
 This project includes third-party code components:
 
-1. cbor-js
+1. cbor-js  
    Modified Source: https://github.com/molpeDE/spark/blob/main/internal/typescript/cbor.ts  
    Original Source: https://github.com/paroga/cbor-js  
    License: MIT 
 
-2. typescriptify-golang-structs
+2. typescriptify-golang-structs  
    Modified Source: https://github.com/molpeDE/spark/blob/main/internal/tsgen/tsgen.go  
    Original Source: https://github.com/tkrajina/typescriptify-golang-structs  
    License: Apache-2.0  
