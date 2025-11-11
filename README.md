@@ -1,21 +1,26 @@
 # Spark
 
-Spark is a small Go framework that demonstrates a compact RPC-over-HTTP pattern (CBOR-encoded payloads), integrated SPA serving (with a Bun-based frontend bundler during development) and automatic TypeScript type generation for RPC bindings (in debug builds). The repository includes an example app (cmd/testapp) that shows common usage patterns: configuration parsing, RPC handlers, validation and serving a single-page application.
+Spark is a small, batteries-included Go framework for building microservices with:
+- Simple RPC-by-reflection
+- Automatic TypeScript type generation for your RPC types
+- Embedded Single-Page Application (SPA) support for shipping frontend assets with your binary
+- Config parsing into Go structs with defaults
+- Request validation using go-playground/validator
+- Development bundler / hot-reload support for frontend development (powered by Bun)
 
-TL;DR
-- RPC over HTTP using CBOR (content-type: application/cbor)
-- Server-side: Go + Echo
-- Client: lightweight TypeScript client (auto-generates hook helpers)
-- Frontend bundling and hot-reload via Bun in debug/dev mode
+This repository contains a demo application under `cmd/testapp` that exercises the framework features.
+
+### Summary
+- Reflection-based RPC exposure using Echo. Methods follow this signature:  
+  `func (s *YourStruct) Method(c echo.Context[, args Serializable]) (Serializable, error)`
+- Client: lightweight TypeScript frontend usign preact and generated RPC types
+- Frontend bundling and hot-reload via Bun
 - Config parsing from INI file into Go structs with defaults
 - Validation using go-playground/validator
 
 Contents
 - cmd/testapp — example application demonstrating features
-- pkg/framework — app helper, config parsing
-- internal/rpcgen — reflection-based RPC binder and (in debug) TS typedef generation
-- internal/spa — SPA handlers (dev reverse proxy to bundler or embedded assets)
-- internal/typescript — TS helper code used by the bundler and client
+- pkg/framework — the core functionality of this package is exposed here
 - pkg/utils/validate — helper for struct validation
 
 Requirements
@@ -23,6 +28,9 @@ Requirements
 - Bun (for frontend bundling and development server) if you want to run frontend dev mode
 - Node tooling only if you use any npm/bun packages in the frontend, but Bun simplifies this
 - git
+
+Quick start - use in a project
+(QUICKSTART.md)[Click Me]
 
 Quick start — run example app (development)
 1. Clone the repository
@@ -33,7 +41,7 @@ Quick start — run example app (development)
    - Install Bun from https://bun.sh (The debug/dev frontend expects Bun for the bundler and dev server.)
 
 3. Run the example app (uses cmd/testapp)
-   go run ./cmd/testapp -config ./config.ini
+   go run ./cmd/testapp
 
    Notes:
    - If `config.ini` does not exist it will be created with any default values found in the app's config struct.
