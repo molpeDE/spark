@@ -178,7 +178,7 @@ import (
 	"github.com/molpeDE/spark/cmd/testapp/app"
 )
 
-//go:generate env NODE_PATH=node_modules bun node_modules/@molpe/spark/bundler --prod
+//go:generate bun spark/bundler --prod
 //go:embed all:dist
 var _distEmbed embed.FS
 
@@ -204,10 +204,11 @@ Note: The debug SPA backend expects `bun` and the internal bundler to be availab
 6) Calling RPC from the frontend (TypeScript)
 
 Spark ships a small client helper in TypeScript that encodes requests as CBOR and decodes the response.
+On the first Dev build it copies the helper files into your frontend directory, feel free to modify them to your liking.
 
-Example usage (client from @molpe/spark):
+Example usage (client from spark):
 ```ts
-import Client from '@molpe/spark/client'
+import Client from 'spark/client'
 import type { App } from './gotypes' // generated types
 
 const client = Client<App>('/rpc/')

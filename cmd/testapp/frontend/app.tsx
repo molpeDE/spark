@@ -1,12 +1,12 @@
-import '@molpe/spark/debug';
+import '@/spark/debug';
 import { render } from 'preact';
-import Client from '@molpe/spark/client';
+import Client from '@/spark/client';
 import type { App } from '@/gotypes';
 import { useSignal } from '@preact/signals';
-import { ForEach, bindInput } from '@molpe/spark/util';
+import { ForEach, bindInput } from '@/spark/util';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { WebSocketAsync } from '@molpe/spark/websocket';
+import { WebSocketAsync } from '@/spark/websocket';
 
 export const client = Client<App>('/rpc/')
 

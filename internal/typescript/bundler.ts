@@ -1,11 +1,8 @@
-import { rm, mkdir } from 'fs/promises';
 import type { BunPlugin } from "bun";
 import { serve } from "bun";
-import * as sass from 'sass';
 import EventEmitter from 'events';
-import { watch } from 'fs/promises';
-import path from 'path';
-import { cwd } from 'process';
+import { rm, watch } from 'fs/promises';
+import * as sass from 'sass';
 
 const sassPlugin: BunPlugin = {
 	name: 'sass-transform',

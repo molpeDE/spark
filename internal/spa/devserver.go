@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	"io/fs"
-	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -15,7 +14,6 @@ import (
 	"os/signal"
 	"path"
 	"runtime"
-	"strings"
 
 	"github.com/molpeDE/spark/internal/typescript"
 )
@@ -30,32 +28,15 @@ func SPA(_ fs.ReadDirFS, types string) http.Handler {
 
 	var ctx, _ = signal.NotifyContext(context.Background(), os.Interrupt, os.Kill)
 
-	injectDependency := func() {
-		cmd := exec.CommandContext(ctx, "bun", "i", fmt.Sprintf("file:%s", typescript.Dir))
-		cmd.Stdout = os.Stdout
-		cmd.Dir = frontendDir
-		cmd.Stderr = os.Stderr
-
-		// Run the command
-		err := cmd.Run()
-		if err != nil {
-			log.Fatalln(err)
-		}
+	if _, err := os.Stat(path.Join(frontendDir, "spark")); err != nil {
+		exec.Command("cp", "-R", path.Join(typescript.Dir, "lib"), fmt.Sprintf("%s/spark", frontendDir)).Run()
+		exec.Command("ln", "-s", path.Join(typescript.Dir, "bundler.ts"), fmt.Sprintf("%s/spark/bundler", frontendDir)).Run()
 	}
 
-	if _, err := os.Stat(path.Join(frontendDir, "package.json")); err != nil {
-		injectDependency()
-	} else if data, err := os.ReadFile(path.Join(frontendDir, "package.json")); err == nil {
-		if !strings.Contains(string(data), typescript.Dir) {
-			injectDependency()
-		}
-	}
-
-	var bundler = exec.CommandContext(ctx, "bun", "node_modules/@molpe/spark/bundler")
+	var bundler = exec.CommandContext(ctx, "bun", path.Join(typescript.Dir, "bundler.ts"))
 	bundler.Dir = frontendDir
 	bundler.Stdout = os.Stdout
 	bundler.Stderr = os.Stderr
-	bundler.Env = append(bundler.Env, fmt.Sprintf("NODE_PATH=%s", path.Join(frontendDir, "node_modules")))
 
 	bundler.Start()
 
